@@ -38,8 +38,7 @@ class Tod(commands.Cog):
 
     @nextcord.slash_command(
         name="tod",
-        description="Start TOD",
-        guild_ids=[int(GuildID)]
+        description="Start TOD"
     )
     async def tod(self, i: nextcord.Interaction):
         embed = nextcord.Embed(

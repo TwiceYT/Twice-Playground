@@ -36,12 +36,11 @@ class MusicQueue:
 music_queue = MusicQueue()
 
 class Music(commands.Cog):
-    GuildID = os.getenv("ServerID")
     def __init__(self, bot):
         self.bot = bot
         self.is_playing = False
 
-    @nextcord.slash_command(name="play", description="Play a song from YouTube. Won't add to queue, will play immediately.", guild_ids=[int(GuildID)])
+    @nextcord.slash_command(name="play", description="Play a song from YouTube. Won't add to queue, will play immediately.")
     async def play(self, interaction: nextcord.Interaction, url: str):
         await interaction.response.defer()
 
@@ -212,7 +211,7 @@ class Music(commands.Cog):
         else:
             await self.safe_send_message(interaction, "No song is currently paused.")
 
-    @nextcord.slash_command(name="queue", description="Show the current song queue.", guild_ids=[int(GuildID)])
+    @nextcord.slash_command(name="queue", description="Show the current song queue.")
     async def queue(self, interaction: nextcord.Interaction):
         queue = music_queue.get_queue(interaction.guild.id)
         if queue:
@@ -227,7 +226,7 @@ class Music(commands.Cog):
             await self.safe_send_message(interaction, "The queue is currently empty.")
 
 
-    @nextcord.slash_command(name="disconnect", description="Disconnects the bot and clears the current queue.", guild_ids=[int(GuildID)])
+    @nextcord.slash_command(name="disconnect", description="Disconnects the bot and clears the current queue.")
     async def disconnect(self, interaction: nextcord.Interaction):
         if interaction.guild.voice_client:
             await interaction.guild.voice_client.disconnect()

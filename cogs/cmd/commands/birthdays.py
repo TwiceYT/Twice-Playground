@@ -10,7 +10,7 @@ load_dotenv(dotenv_path='config\config.env')
 DBFile = os.getenv("DATABASE_FILE")
 database = sqlite3.connect(DBFile)
 cursor = database.cursor()
-GuildID = os.getenv("ServerID")
+
 
 
 intents = nextcord.Intents.all()
@@ -33,8 +33,7 @@ class Birthday(commands.Cog):
 
     @nextcord.slash_command(
         name="birthday-set",
-        description="Set your own birthday and get pinged in the server on your B-Day",
-        guild_ids=[int(GuildID)]
+        description="Set your own birthday and get pinged in the server on your B-Day"
     )
     async def set_birthday(self, i: nextcord.Interaction, birthday: str):
         try:
@@ -104,8 +103,7 @@ class Birthday(commands.Cog):
 
     @nextcord.slash_command(
         name="birthday-near",
-        description="Get a list of upcoming birthdays in the next few months",
-        guild_ids=[int(GuildID)]
+        description="Get a list of upcoming birthdays in the next few months"
     )
     async def upcoming_birthdays(self, i: nextcord.Interaction, months: int = 3):
         today = datetime.date.today()

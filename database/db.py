@@ -10,12 +10,10 @@ def setup():
 
         #MessageStats Database
         cursor.execute("""
-        CREATE TABLE IF NOT EXISTS msgstats (
-            guild_id INTEGER,
-            user_id INTEGER,
-            user TEXT,
-            msg INTEGER,
-            last_message_timestamp DATETIME
+        CREATE TABLE IF NOT EXISTS guildinfo (
+            guild_id INTEGER PRIMARY KEY,
+            guild_name TEXT NOT NULL,
+            join_date TEXT NOT NULL 
         )
         """)
 
@@ -28,6 +26,17 @@ def setup():
             birthdate INTEGER
         )
         """);
+
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS msgstats (
+            guild_id INTEGER,
+            user_id INTEGER,
+            user TEXT,
+            msg INTEGER,
+            last_message_timestamp DATETIME
+        )
+        """)
+
         # Commit changes and return connection and cursor
         db_connection.commit()
         return db_connection, cursor

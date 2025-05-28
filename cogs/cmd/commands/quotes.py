@@ -7,7 +7,6 @@ from dotenv import load_dotenv, dotenv_values
 
 load_dotenv(dotenv_path='config/config.env')
 intents = nextcord.Intents.all()
-GuildID = os.getenv("ServerID")
 
 class Quotes(commands.Cog):
     def __init__(self, bot: commands.Bot):
@@ -15,8 +14,7 @@ class Quotes(commands.Cog):
 
     @nextcord.slash_command(
         name="quotes",
-        description="Generate a random quote!",
-        guild_ids=[int(GuildID)]
+        description="Generate a random quote!"
 
     )
     async def quote(self, i: nextcord.Interaction):
